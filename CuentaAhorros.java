@@ -1,18 +1,18 @@
 public class CuentaAhorros extends Cuenta {
     protected boolean activa;
 
+    private final float MONTO_MINIMO = 10000;
+    private final float COSTO_COMISION_MENSUAL = 1000;
+
     public CuentaAhorros(float saldo, float tasaAnual) {
         super(saldo, tasaAnual);
-        this.activa = saldo >= 10000;
+        isActive();
     }
 
     @Override
     public void retirar(float cantidad) {
         if (activa) {
             super.retirar(cantidad);
-
-        } else {
-            System.out.println("Su cuenta de ahorros esta inactiva, por lo tanto no puede retirar");
         }
     }
 
@@ -20,21 +20,31 @@ public class CuentaAhorros extends Cuenta {
     public void consignar(float cantidad) {
         if (activa) {
             super.consignar(cantidad);
-        } else {
-            System.out.println("Su cuenta de ahorros esta inactiva, por lo tanto no podra consignar");
         }
     }
 
     public void extractoMensual() {
         if (numeroRetiros > 4) {
-            comisionMensual += 1000 * (numeroRetiros - 4);
+            comisionMensual = (numeroRetiros - 4) * COSTO_COMISION_MENSUAL;
 
         }
         super.extractoMensual();
-        if (saldo < 1000) {
-            activa = false;
-        }
+        isActive();
 
+    }
+
+    public void imprimir() {
+        System.out.println("saldo: " + saldo);
+        System.out.println("COMISION MENSUAL: " + comisionMensual);
+        System.out.println("numero de Transaciones: " + (numeroConsignaciones + numeroRetiros));
+    }
+
+    public void isActive() {
+        if (saldo < MONTO_MINIMO) {
+            activa = false;
+        } else {
+            activa = true;
+        }
     }
 
 }
