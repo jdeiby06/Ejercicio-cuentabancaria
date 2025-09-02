@@ -13,16 +13,17 @@ public class Cuenta {
     }
 
     public void consignar(float cantidad) {
-        saldo += cantidad;
-        numeroConsignaciones++;
+        saldo = saldo + cantidad;
+        numeroConsignaciones = numeroConsignaciones + 1;
     }
 
     public void retirar(float cantidad) {
-        if (cantidad > saldo) {
-            System.out.println("Saldo insuficiente, no se puede relizar retiro");
+        float nuevoSaldo = saldo - cantidad;
+        if (nuevoSaldo >= 0) {
+            saldo = nuevoSaldo;
+            numeroRetiros = numeroRetiros + 1;
         } else {
-            saldo -= cantidad;
-            numeroRetiros++;
+            System.out.println("La cantidad a retirar excede su saldo actual");
         }
     }
 
