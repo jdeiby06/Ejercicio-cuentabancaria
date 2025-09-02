@@ -27,15 +27,15 @@ public class Cuenta {
         }
     }
 
-    public void CalcularInteres() {
-        float interesMensual = saldo * (tasaAnual / 12);
-        saldo += interesMensual;
-
+    public void calcularInteres() {
+        float tasaMensual = tasaAnual / 12;
+        float interesMensual = saldo * tasaMensual;
+        saldo = saldo + interesMensual;
     }
 
-    public void ExtractoMensual() {
-        saldo -= comisionMensual;
-        CalcularInteres();
+    public void extractoMensual() {
+        saldo = saldo - comisionMensual;
+        calcularInteres();
 
     }
 
@@ -43,7 +43,7 @@ public class Cuenta {
         System.out.println("Saldo: " + saldo);
         System.out.println("Numero de consignaciones hechas: " + numeroConsignaciones);
         System.out.println("Numero de retiros hechos: " + numeroRetiros);
-        System.out.println("Tasa de anual de interes: " + tasaAnual);
+        System.out.println("Tasa anual de interes: " + tasaAnual);
         System.out.println("Comision Mensual: " + comisionMensual);
     }
 

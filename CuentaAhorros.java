@@ -25,12 +25,12 @@ public class CuentaAhorros extends Cuenta {
         }
     }
 
-    public void ExtractoMensual() {
+    public void extractoMensual() {
         if (numeroRetiros > 4) {
             comisionMensual += 1000 * (numeroRetiros - 4);
 
         }
-        super.ExtractoMensual();
+        super.extractoMensual();
         if (saldo < 1000) {
             activa = false;
         }
